@@ -11,6 +11,9 @@ makeCacheMatrix <- function(x = matrix()) {
                 m <<- NULL
         }
         get <- function() x
+        ## to use the "ginv" function we need the "MASS" package. 
+        ## It has been included at the beginning of the file.
+        
         setmatrix <- function(ginv) m <<- ginv
         getmatrix <- function() m
         list(set = set, get = get,
@@ -27,6 +30,9 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         
         m <- x$getmatrix()
+        
+        ## If it has been previously run we collect from matrix
+        
         if(!is.null(m)) {
                 message("getting cached data for matrix")
                 return(m)
